@@ -1,0 +1,56 @@
+{
+  "PostCard":[
+    {
+      "_id":"001",
+      "text":"Flamengo consegue boa vitória fora de casa na estréia da Copa Libertadores 2021",
+      "tags":[ 
+        { "_id":"t001",
+          "name":"Futebol"
+        }
+      ]
+    },
+    {
+      "_id":"002",
+      "text":"Primeira partida de um grupo difícil exigiu que o time carioca virasse o placar em dois momentos do jogo",
+      "tags":[ 
+        { "_id":"t002",
+          "name":"Temporada"
+        },
+        { "_id":"t003",
+          "name":"Jogador"
+        }
+      ]
+    },
+    {
+      "_id":"003",
+      "text":"O Flamengo não conseguia vencer um time na Argentina há mais de 40 anos",
+      "tags":[ 
+        { "_id":"t004",
+          "name":"Histórico"
+        }
+      ]
+    },
+    {
+      "_id":"004",
+      "text":"Arrascaeta fez a diferença e garantiu a vitória para o time rubro-negro.",
+      "tags":[
+        {
+          "_id":"t003",
+          "name":"Jogador"
+        }
+      ]
+    },
+    {
+      "_id":"004",
+      "text":"Mesmo com falhas defensivas recorrentes, o ,time de Rogério Ceni conseguiu resolver o jogo ,através das boas atuações de jogadores do ,meio pra frente. Diego, Gerson e Arrascaeta ,fizeram boa partida e Gabigol, mais uma vez, ,converteu uma cobrança de pênalti com ,bastante segurança. Apesar do erro no ,primeiro gol do time Argentino, Arão conseguiu ,marcar e jogar bem.",
+      "tags":[ 
+        { "_id":"t002",
+          "name":"Temporada"
+        },
+        { "_id":"t001",
+          "name":"Futebol"
+        }
+      ]
+    }
+  ]
+}
