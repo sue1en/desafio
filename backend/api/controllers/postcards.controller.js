@@ -10,9 +10,16 @@ module.exports = {
     return res.status(statusCode).send({message: serviceResult.message, ...dataReturn});
   },
   
+  getPostByTag: async (req, res, next) => {
+    const {body} = req;
+    const serviceResult = await postCardsService.findPostsByTag(body);
+    return res.status(200).send({message: serviceResult.message, data: serviceResult.data});
+  },
+
   getAllPostCard: async (req, res, next) => {
     const serviceResult = await postCardsService.getAllPostCard();
-    return res.status(200).send({message: serviceResult.message, data: serviceResult.data});
+    const dataReturn = serviceResult.success ? {data: serviceResult.data} : {details: serviceResult.details}
+    return res.status(200).send({message: serviceResult.message, ...dataReturn});
   },
 
   getByIdPostCard: async (req, res, next) => {

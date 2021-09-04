@@ -16,100 +16,10 @@ const toTagDTO = (model) => {
   return{
     postcards
   }
-}
-
-
-
-// const createPostCard = async (model) => {
-//   const { text } = model;
-//   if(text.length > 400){
-//     return {
-//       success:false,
-//       message:"Operação não pode ser realizada.",
-//       details: "O texto ultrapassou 400 caracteres."
-//     };
-//   };
-
-//   const tagsFromDB = await tagModel.find({_id:model.tags});
-
-//   const mapthetag = tagsFromDB.map(tagsFromDB => {
-//     return toTagDTO(tagsFromDB)
-//   })
-//   console.log("###____", mapthetag)
-
-//   // if(!tagsFromDB){
-//   //   return{
-//   //     success:false,
-//   //     message:"Operação não pode ser realizada.",
-//   //     details: "Tag informada não existe."
-//   //   }
-//   // };
-
-//   const newPostCard = await postcardModel.create({
-//     text:text,
-//     tags: model.tags
-//   });
-
-
-//   mapthetag = [ ...mapthetag, newPostCard._id];
-//   await tagsFromDB.save();
-
-//   return{
-//     success:true,
-//     message:"Operação realizada com sucesso!",
-//     data: toCardDTO(newPostCard)
-//   };
-// }
-
+};
 
 const createPostCard = async (model) => {
-  const { text } = model;
-  
-  const tagsFromDB = await tagModel.find({_id:model.tags});
-
-  const mapthetag = tagsFromDB.map(tagsFromDB => {
-    return toTagDTO(tagsFromDB)
-  })
-  console.log("###____", mapthetag)
-
-
-  const newPostCard = await postcardModel.create({
-    text:text,
-    tags: model.tags
-  });
-
-
-  mapthetag = [ ...mapthetag, newPostCard._id];
-  await tagsFromDB.save();
-
-  return{
-    success:true,
-    message:"Operação realizada com sucesso!",
-    data: toCardDTO(newPostCard)
-  };
-}
-
-const editPostCard = async (postcardId, model) => {
   const { text, tags } = model;
-  const [postFromDB, tagFromDB] = await Promise.all([
-    postcardModel.findById(postcardId),
-    tagModel.findById(tags)
-  ]);
-
-  if(!postFromDB){
-    return{
-      success:false,
-      message:"Operação não pode ser realizada.",
-      details: "O Post informado não existe."
-    }
-  };
-  if(!tagFromDB){
-    return{
-      success:false,
-      message:"Operação não pode ser realizada.",
-      details: "Tag informada não existe."
-    }
-  };
   if(text.length > 400){
     return {
       success:false,
@@ -117,7 +27,38 @@ const editPostCard = async (postcardId, model) => {
       details: "O texto ultrapassou 400 caracteres."
     };
   };
+  const newPost = await postcardModel.create({
+    text,
+    tags
+  });
+  
+  return {
+    success:true,
+    message:"Operação realizada com sucesso!",
+    data: {...toCardDTO(newPost)}
+  }
+};
 
+const editPostCard = async (postcardId, model) => {
+  const { text, tags } = model;
+  const postFromDB = await postcardModel.findById(postcardId);
+  
+  if(!postFromDB){
+    return{
+      success:false,
+      message:"Operação não pode ser realizada.",
+      details: "O Post informado não existe."
+    }
+  };
+
+  if(text.length > 400){
+    return {
+      success:false,
+      message:"Operação não pode ser realizada.",
+      details: "O texto ultrapassou 400 caracteres."
+    };
+  };
+      
   postFromDB.text = text;
   postFromDB.tags = tags;
 
@@ -140,35 +81,42 @@ const removePostCard = async (postcardId) => {
       details: "O Post informado não existe."
     }
   };
-
   await postcardModel.deleteOne(postFromDB)
 
   return {
     success:true,
     message:"Operação realizada com sucesso!",
-    data: `O post >> ${postcardId} << foi removido com sucesso.`
+    data: `O post >> ${postFromDB._id} << foi removido com sucesso.`
   };
 };
 
 const getAllPostCard = async () => {
-  const postFromDB = await postcardModel.find();
+  const postsFromDB = await postcardModel.find();
+  if(postsFromDB.length < 0){
+    return{
+      success:false,
+      message:"Operação realizada.",
+      details:"Ops! Nenhum insight foi criado ainda." 
+    }
+  };
+
   return{
     success:true,
     message:"Operação realizada com sucesso!",
-    data: postFromDB.map( postFromDB => {
-      return toCardDTO(postFromDB)
+    data: postsFromDB.map( postsFromDB => {
+      return toCardDTO(postsFromDB)
     }) 
   };
 };
 
 const getByIdPostCard = async (postcardId) => {
   const postFromDB = await postcardModel.findById(postcardId);
-
+  
   if(!postFromDB){
     return{
       success:false,
       message:"Operação não pode ser realizada.",
-      details: "Postcard informado não existe."
+      details: "Ops! Postcard informado não existe."
     }
   };
   return{
@@ -178,10 +126,28 @@ const getByIdPostCard = async (postcardId) => {
   };
 };
 
+const findPostsByTag = async (model) => {
+  const postsFromDB = await postcardModel.find({tags:model.tags});
+  if(postsFromDB.length < 0){
+    return{
+      success:false,
+      message:"Operação realizada.",
+      details:"Ops! Não há nenhum insight nessa categoria." 
+    }
+  };
+
+  return {
+    success:true,
+    message:"Operação realizada com sucesso!",
+    data: postsFromDB.map(postsFromDB => {return toCardDTO(postsFromDB)})
+  };
+};
+
 module.exports = {
   createPostCard,
   editPostCard,
   removePostCard,
   getAllPostCard,
-  getByIdPostCard
+  getByIdPostCard,
+  findPostsByTag
 }

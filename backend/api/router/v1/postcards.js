@@ -6,4 +6,5 @@ module.exports = (appRouter) => {
   appRouter.route("/posts/:postcardId").get(postCardController.getByIdPostCard);
   appRouter.route("/posts/:postcardId").put(postCardController.editPostCard);
   appRouter.route("/posts/:postcardId").delete(postCardController.removePostCard);
+  appRouter.route("/buscapost").get(postCardController.getPostByTag);
 }
