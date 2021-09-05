@@ -20,7 +20,7 @@ const toTagDTO = (model) => {
 
 const createPostCard = async (model) => {
   const { text, tags } = model;
-  if(text.length > 400){
+  if(await text.length <= 400){
     return {
       success:false,
       message:"Operação não pode ser realizada.",
@@ -28,8 +28,8 @@ const createPostCard = async (model) => {
     };
   };
   const newPost = await postcardModel.create({
-    text,
-    tags
+    text:text,
+    tags:tags
   });
   
   return {
@@ -51,7 +51,7 @@ const editPostCard = async (postcardId, model) => {
     }
   };
 
-  if(text.length > 400){
+  if(text.length <= 400){
     return {
       success:false,
       message:"Operação não pode ser realizada.",

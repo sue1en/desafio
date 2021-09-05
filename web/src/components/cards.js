@@ -48,14 +48,13 @@ export default function Cards({data}) {
 
   return(
     <>
-      {data.length >= 0
-        ? data?.map((data, i) => (
+      {data?.map((data, i) => (
           <Card key={i} className={classes.card}>
             <CardContent className={classes.cardContent}>
               <Typography className={classes.postText}>
                 {data.text}
               </Typography>
-              <div className={classes.tagsBox}>
+              {/* <div className={classes.tagsBox}>
                 {data.tags.map((tags, k) => (
                   <div key={k} className={classes.tags}>
                     <Typography>
@@ -63,11 +62,10 @@ export default function Cards({data}) {
                     </Typography>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </CardContent>
           </Card>
         ))
-        : "...loading"
       }
     </>
   )

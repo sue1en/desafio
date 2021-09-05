@@ -9,6 +9,17 @@ module.exports = {
 
     return res.status(statusCode).send({message: serviceResult.message, ...dataReturn});
   },
+  tagByName: async (req, res, next) => {
+    const { body } = req;
+    const serviceResult = await tagsService.getTagByName(body);
+    console.log("###__", serviceResult)
+    const statusCode = serviceResult.success ? 200 : 400;
+    console.log("###__", statusCode)
+    const dataReturn = serviceResult.success ? {data: serviceResult.data} : {details: serviceResult.details}
+    console.log("###__", dataReturn)
+
+    return res.status(statusCode).send({message: serviceResult.message, ...dataReturn});
+  },
 
   getByIdTag: async (req, res, next) => {
     const { params } = req;

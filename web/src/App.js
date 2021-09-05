@@ -1,4 +1,4 @@
-import { Router } from "@reach/router";
+import { Router, } from "@reach/router";
 import Layout from "./components/layout/index"
 import Home from "./views/home";
 

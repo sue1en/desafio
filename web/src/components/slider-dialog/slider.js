@@ -13,7 +13,8 @@ import {
 } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import backgroundImg from "../../assets/images/background.svg"
+import backgroundImg from "../../assets/images/background.svg";
+import { createPostCard } from "../../services/postcard";
 
 const useStyle = makeStyles((theme) => ({
   root:{
@@ -94,6 +95,26 @@ const useStyle = makeStyles((theme) => ({
 
 export default function SliderPostCard ({close}) {
   const classes = useStyle();
+  const [ postcard, setPostcard] = useState({});
+
+  const handleChange = (e) => {
+    setPostcard({
+      ...postcard,
+      [e.target.name]: e.target.value
+    })
+  };
+
+  const submitForm = () => {
+    const newPostcard = {
+      ...postcard
+    }
+    createPostCard(newPostcard).then(res => {
+      setPostcard({})
+      alert("Post criado com sucesso!")
+    }).catch(err => {
+      console.log("Ops! Temos um problema.")
+    })
+  };
 
   return (
     <div className={classes.root}>
@@ -113,7 +134,10 @@ export default function SliderPostCard ({close}) {
         <Card className={classes.card}>
           <CardContent className={classes.cardContent}>
           <TextField
-            id="input-insight"
+            id="text"
+            name="text"
+            value={postcard.text}
+            onChange={handleChange}
             label="INSIGHT"
             placeholder="Escreva aqui o seu insight…"
             helperText="limite de caracteres: 400"
@@ -124,9 +148,12 @@ export default function SliderPostCard ({close}) {
             InputLabelProps={{
               shrink: true,
             }}
-          />
+            />
           <TextField
-            id="input-tag"
+            id="tags"
+            name="tags"
+            value={postcard.tags}
+            onChange={handleChange}
             label="CATEGORIA"
             placeholder="Adicione uma categoria (opcional)…"
             fullWidth
@@ -137,7 +164,7 @@ export default function SliderPostCard ({close}) {
           />
           </CardContent>
         </Card>
-        <Button className={classes.sendButton}>
+        <Button onClick={submitForm} className={classes.sendButton}>
           Publicar  
         </Button>
       </div>

@@ -57,7 +57,6 @@ const getAllTags = async () => {
       details:"Ops! Nenhuma tag foi criado ainda." 
     }
   };
-
   return{
     success:true,
     message:"Operação realizada com sucesso!",
@@ -67,8 +66,26 @@ const getAllTags = async () => {
   };
 };
 
+const getTagByName = async (model) => {
+  const tagResult = await tagModel.find({name:model.name});
+  console.log("###__", tagResult)
+  if(await tagResult.length < 0){
+    return{
+      success:false,
+      message:"Operação não pode ser realizada.",
+      details: "Ops! Tag informada não existe."
+    }
+  };
+  return{
+    success:true,
+    message:"Operação realizada com sucesso!",
+    data: toTagDTO(tagResult)
+  }
+};
+
 module.exports = {
   createTag,
   getTagById,
   getAllTags,
+  getTagByName
 }
