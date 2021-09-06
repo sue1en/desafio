@@ -67,9 +67,8 @@ const getAllTags = async () => {
 };
 
 const getTagByName = async (model) => {
-  const tagResult = await tagModel.find({name:model.name});
-  console.log("###__", tagResult)
-  if(await tagResult.length < 0){
+  const tagResult = await tagModel.find({ name:{ $regex: model.name, $options: "i" }});
+  if(tagResult.length <= 0){
     return{
       success:false,
       message:"Operação não pode ser realizada.",
@@ -79,7 +78,7 @@ const getTagByName = async (model) => {
   return{
     success:true,
     message:"Operação realizada com sucesso!",
-    data: toTagDTO(tagResult)
+    data: tagResult
   }
 };
 

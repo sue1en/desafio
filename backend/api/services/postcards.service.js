@@ -127,12 +127,19 @@ const getByIdPostCard = async (postcardId) => {
 };
 
 const findPostsByTag = async (model) => {
-  const postsFromDB = await postcardModel.find({tags:model.tags});
+  const postsFromDB = await postcardModel.find({tags:{$in: [ model?.tags ] }});
 
+  if(postsFromDB.length <= 0){
+    return{
+      success:false,
+      message:"Operação não pode ser realizada.",
+      details: "Ops! Não há postcards nessa categoria."
+    }
+  };
   return {
     success:true,
     message:"Operação realizada com sucesso!",
-    data: postsFromDB.map(postsFromDB => {return toCardDTO(postsFromDB)})
+    data: postsFromDB.map(post => {return toCardDTO(post)})
   };
 };
 

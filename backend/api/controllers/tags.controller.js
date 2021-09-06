@@ -17,16 +17,17 @@ module.exports = {
     console.log("###__", statusCode)
     const dataReturn = serviceResult.success ? {data: serviceResult.data} : {details: serviceResult.details}
     console.log("###__", dataReturn)
-
+    
     return res.status(statusCode).send({message: serviceResult.message, ...dataReturn});
   },
-
+  
   getByIdTag: async (req, res, next) => {
     const { params } = req;
-  
+    
     const serviceResult = await tagsService.getTagById(params.tagId)
     const statusCode = serviceResult.success ? 200 : 400;
     const dataReturn = serviceResult.success ? {data: serviceResult.data} : {details: serviceResult.details}
+    console.log("###__", dataReturn)
     return res.status(statusCode).send({message: serviceResult.message, ...dataReturn});
   },
 

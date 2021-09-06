@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const cliApp = require("commander");
 const inquirer = require("inquirer");
 const { version } = require("./package.json");
@@ -25,7 +23,7 @@ cliApp
   .action(() => {
     inquirer.prompt(questions).then(answers => {
       createPostCard(answers)}).then(() => {
-        console.log(`sucesso!!!`)
+        console.log(answers)
       }).catch((error) => {
         console.log(error)
       })

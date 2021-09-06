@@ -3,7 +3,7 @@ import {
   Button,
   Card,
   CardContent,
-  TextField,
+  TextField
 } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import { createPostCard } from "../../services/postcard";
@@ -61,7 +61,7 @@ export default function NewInsight ({close}) {
       console.log("Ops! Temos um problema.")
     })
   };
-
+  
   return (
     <DialogLayout close={close}>
       <Card className={classes.card}>
@@ -82,6 +82,7 @@ export default function NewInsight ({close}) {
             shrink: true,
           }}
           />
+        
         <TextField
           id="tags"
           name="tags"
