@@ -13,7 +13,9 @@ module.exports = {
   getPostByTag: async (req, res, next) => {
     const {body} = req;
     const serviceResult = await postCardsService.findPostsByTag(body);
-    return res.status(200).send({message: serviceResult.message, data: serviceResult.data});
+    const statusCode = serviceResult.success ? 200 : 400;
+    const dataReturn = serviceResult.success ? {data: serviceResult.data} : {details: serviceResult.details}
+    return res.status(statusCode).send({message: serviceResult.message, ...dataReturn});
   },
 
   getAllPostCard: async (req, res, next) => {

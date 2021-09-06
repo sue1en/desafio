@@ -6,7 +6,6 @@ import {
   Avatar,
   Icon,
   Typography,
-  Drawer,
   Slide,
   Dialog
 } from "@material-ui/core"
@@ -15,7 +14,7 @@ import AddIcon from '@material-ui/icons/Add';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import BrandLogo from "../../assets/images/logo/brand-insights@3x.svg";
 import backgroundImg from "../../assets/images/background.svg"
-import SliderPostCard from "../slider-dialog/slider"
+import NewInsight from "../insights/new-insight"
 
 const useStyle = makeStyles((theme) => ({
   appBar:{
@@ -60,7 +59,7 @@ const useStyle = makeStyles((theme) => ({
 }))
 
 const Transition = forwardRef(function Transition(props, ref) {
-  return <Slide direction="left" ref={ref} {...props} />;
+  return <Slide direction="left" ref={ref} {...props} timeout={500}/>;
 });
 
 export default function Header () {
@@ -91,29 +90,8 @@ export default function Header () {
         </Toolbar>
       </AppBar>
       <Dialog fullScreen open={drawer} onClose={handleDrawerClose} TransitionComponent={Transition}>
-        <SliderPostCard close={handleDrawerClose}/>
+        <NewInsight close={handleDrawerClose}/>
       </Dialog>
     </div>
   );
 };
-
-
-// const toggleDrawer = (anchor, open) => (event) =>{
-//   if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")){
-//     return
-//   }
-//   setDrawer({...drawer, [anchor]: open})
-// };
-
-// const list = (anchor) => (
-//   <div
-//     className={clsx(classes.list, {
-//       [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-//     })}
-//     role="presentation"
-//     onClick={toggleDrawer(anchor, false)}
-//     onKeyDown={toggleDrawer(anchor, false)}
-//   >
-//     <h1> estamos aqui </h1>
-//   </div>
-// );

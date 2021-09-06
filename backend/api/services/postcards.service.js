@@ -1,5 +1,5 @@
 const { postcardModel, tagModel } = require("../models/index");
-
+const { isTagNameRegistered } = require("./tags.service")
 const toCardDTO = (model) => {
   const { _id, text, createdAt, updatedAt, tags} = model
   return{
@@ -20,7 +20,7 @@ const toTagDTO = (model) => {
 
 const createPostCard = async (model) => {
   const { text, tags } = model;
-  if(await text.length <= 400){
+  if(await text.length > 400){
     return {
       success:false,
       message:"Operação não pode ser realizada.",
@@ -51,7 +51,7 @@ const editPostCard = async (postcardId, model) => {
     }
   };
 
-  if(text.length <= 400){
+  if(text.length > 400){
     return {
       success:false,
       message:"Operação não pode ser realizada.",
@@ -128,13 +128,6 @@ const getByIdPostCard = async (postcardId) => {
 
 const findPostsByTag = async (model) => {
   const postsFromDB = await postcardModel.find({tags:model.tags});
-  if(postsFromDB.length < 0){
-    return{
-      success:false,
-      message:"Operação realizada.",
-      details:"Ops! Não há nenhum insight nessa categoria." 
-    }
-  };
 
   return {
     success:true,
