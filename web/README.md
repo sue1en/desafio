@@ -24,5 +24,30 @@ resumo aqui
   ```
 8. Para rodar o projeto execute o comando <b>`yarn start`</b> na pasta raiz do projeto de backend.
 
-## Telas do projeto:
+## Telas do Projeto:
+  #### Telas para mobile:
+  - Tela principal para mobile:
+  
+  <img src="https://github.com/sue1en/desafio/blob/main/web/imagem-telas/mobile/mobile_01.JPG?raw=true" width="250" alt="tela principal para mobile"/>
+  
+  - Tela de criação de post para mobile:
+  
+  <img src="https://github.com/sue1en/desafio/blob/main/web/imagem-telas/mobile/mobile_02.JPG?raw=true" width="250" alt="tela cria post para mobile"/>
+  
+   - Tela de edição de post para mobile:
+  
+  <img src="https://github.com/sue1en/desafio/blob/main/web/imagem-telas/mobile/mobile_03.JPG?raw=true" width="250" alt="tela edita post para mobile"/>
 
+  
+ #### Telas para mobile:
+  - Tela principal para mobile:
+  
+    <img src="https://github.com/sue1en/desafio/blob/main/web/imagem-telas/desktop/desktop_01.JPG?raw=true" heigth="500" alt="tela principal para desktop"/>
+    
+  - Tela de criação de post para mobile:
+  
+    <img src="https://github.com/sue1en/desafio/blob/main/web/imagem-telas/desktop/desktop_01.JPG?raw=true" heigth="500" alt="tela cria post para desktop"/>
+    
+  - Tela de edição de post para mobile:
+  
+    <img src="https://github.com/sue1en/desafio/blob/main/web/imagem-telas/desktop/desktop_01.JPG?raw=true" heigth="500" alt="tela edita post para desktop"/>
