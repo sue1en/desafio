@@ -1,5 +1,4 @@
 const postCardsService = require("../services/postcards.service");
-const testePostService = require("../services/testepost.service");
 
 module.exports = {
   createPostCard: async (req, res, next) => {
