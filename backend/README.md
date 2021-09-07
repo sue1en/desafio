@@ -18,8 +18,8 @@ O Projeto é uma API RESTful, para ser utilizada na criação de postagens (card
 2. Faça a Instalação do MongoDB correspondente ao seu sistema operacional. [Link de acesso a página](https://docs.mongodb.com/guides/server/install/).
 3. Faça a Instalação da sua GUI de preferencia, para facilitar a visualização dos dados. Nesse projeto foi utilizado o Mongo Compass. [Link de acesso a página para download](https://docs.mongodb.com/guides/server/install/).
 4. Clone o projeto em uma pasta de sua preferencia.
-5. Instale as dependências com o comando <b>npm install</b> ou <b>yarn install</b> para instalar com o yarn.
-7. Crie um arquivo .env na pasta raíz do backend com as seguintes informações:
+5. Instale as dependências com o comando <b>`npm install`</b> ou <b>`yarn install`</b> para instalar com o yarn.
+7. Crie um arquivo <b>`.env`</b> na pasta raíz do backend com as seguintes informações:
   ```
     # Porta padrão usada no projeto. Exemplo:  
     PORT=3333
@@ -31,7 +31,7 @@ O Projeto é uma API RESTful, para ser utilizada na criação de postagens (card
     MONGO_DB_HOST=localhost:27017
   ```
   
-8. Para rodar o projeto execute o comando <b>npm run dev</b> na pasta raiz do projeto de backend.
+8. Para rodar o projeto execute o comando <b>`npm run dev`</b> na pasta raiz do projeto de backend.
   
 ## Rotas
 ```
