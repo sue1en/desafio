@@ -1,5 +1,5 @@
 # Interface web - Cards de conteúdo esportivos (Insights)
-resumo aqui
+Projeto de uma inrface gráfica para ser usado junto com a api de criação de postagens esportivas (cards). O projeto foi contrído utilizando React e foram usados componentes do Material-Ui para auxiliar na criação da interface. Nela podemos visualizar, criar, editar e excluir os cards.
 
 ## Requerimento:
   - NodeJS
